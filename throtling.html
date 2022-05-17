@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+     
+    </script>
+  </head>
+  <body>
+    <input type="text" id="tt" onkeyup="inputChanged(event)" />
+
+    <script>
+
+       function inputChanged(event) {
+        //debouncing(event);
+        throttling(event)
+
+      }
+
+      //debouncing
+      var debouncingTimerID;
+      function debouncing(event) {
+        console.log(event.target.value);
+
+        if (debouncingTimerID) {
+          clearTimeout(debouncingTimerID);
+        }
+
+        debouncingTimerID = setTimeout(() => {
+          console.log("Debouncing request call");
+        }, 2000);
+      }
+
+      //Throtling
+      var isChange = false;
+      var intervalId;
+      function throttling(event) {
+        console.log(event.target.value);
+        isChange = true;
+        if (!intervalId) {
+          intervalId = setInterval(() => {
+            if (isChange) {
+              isChange = false;
+              console.log("Throttling Request Call");
+            }
+          }, 2000);
+        }
+      }
+    </script>
+  </body>
+</html>
